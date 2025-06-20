@@ -1,0 +1,37 @@
+&HEAD VERSION = 7400, TITLE = 'CFAST Simulation' /
+ 
+!! Scenario Configuration 
+&TIME SIMULATION = 3600 PRINT = 60 SMOKEVIEW = 60 SPREADSHEET = 60 / 
+&INIT PRESSURE = 101325 RELATIVE_HUMIDITY = 50 INTERIOR_TEMPERATURE = 20 EXTERIOR_TEMPERATURE = 20 /
+&MISC  LOWER_OXYGEN_LIMIT = 0.1 / 
+ 
+!! Material Properties 
+&MATL ID = 'Concrete' MATERIAL = '"Concrete, Normal Weight 6 inches"', 
+      CONDUCTIVITY = 1700 DENSITY = 2200 SPECIFIC_HEAT = 1, THICKNESS = 0.15 EMISSIVITY = 0.94 /
+ 
+!! Compartments 
+&COMP ID = 'Comp 1'
+      DEPTH = 100 HEIGHT = 4.5 WIDTH = 100 CEILING_MATL_ID = 'Concrete' WALL_MATL_ID = 'Concrete' FLOOR_MATL_ID = 'Concrete'
+      ORIGIN = 0, 0, 0 GRID = 50, 50, 50 /
+ 
+!! Fires 
+&FIRE ID = 'Pool'  COMP_ID = 'Comp 1', FIRE_ID = 'Toluene '  LOCATION = 2, 2 / 
+&CHEM ID = 'Toluene' CARBON = 7 CHLORINE = 0 HYDROGEN = 8 NITROGEN = 0 OXYGEN = 0 HEAT_OF_COMBUSTION = 39700 RADIATIVE_FRACTION = 0.42 / 
+&TABL ID = 'Toluene' LABELS = 'TIME', 'HRR' , 'HEIGHT' , 'AREA' , 'CO_YIELD' , 'SOOT_YIELD' , 'HCN_YIELD' , 'HCL_YIELD' , 'TRACE_YIELD'  /
+&TABL ID = 'Toluene', DATA = 0, 0, 0, 0, 0.066, 0.18, 0, 0, 0 /
+&TABL ID = 'Toluene', DATA = 50, 117.25, 0, 0.05, 0.066, 0.18, 0, 0, 0 /
+&TABL ID = 'Toluene', DATA = 100, 469, 0, 0.2, 0.066, 0.18, 0, 0, 0 /
+&TABL ID = 'Toluene', DATA = 150, 1055, 0, 0.44, 0.066, 0.18, 0, 0, 0 /
+&TABL ID = 'Toluene', DATA = 200, 1876, 0, 0.78, 0.066, 0.18, 0, 0, 0 /
+&TABL ID = 'Toluene', DATA = 250, 2931, 0, 1.22, 0.066, 0.18, 0, 0, 0 /
+&TABL ID = 'Toluene', DATA = 300, 4221, 0, 1.75, 0.066, 0.18, 0, 0, 0 /
+&TABL ID = 'Toluene', DATA = 350, 5745, 0, 2.39, 0.066, 0.18, 0, 0, 0 /
+&TABL ID = 'Toluene', DATA = 400, 7504, 0, 3.12, 0.066, 0.18, 0, 0, 0 /
+&TABL ID = 'Toluene', DATA = 450, 9497, 0, 3.95, 0.066, 0.18, 0, 0, 0 /
+&TABL ID = 'Toluene', DATA = 462, 10010, 0, 4, 0.066, 0.18, 0, 0, 0 /
+&TABL ID = 'Toluene', DATA = 3700, 10000, 0, 4, 0.066, 0.18, 0, 0, 0 /
+ 
+!! Visualizations
+&SLCF COMP_ID = 'Comp 1' DOMAIN = '2-D'  POSITION = 35.355, PLANE = 'X' / 
+&SLCF COMP_ID = 'Comp 1' DOMAIN = '2-D'  POSITION = 35.355, PLANE = 'Y' / 
+&SLCF COMP_ID = 'Comp 1' DOMAIN = '2-D'  POSITION = 1.8, PLANE = 'Z' / 
